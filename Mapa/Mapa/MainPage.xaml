@@ -4,10 +4,8 @@
              xmlns:local="clr-namespace:Mapa"
              x:Class="Mapa.MainPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout x:Name="ContainerMapa">
+           
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
