@@ -45,12 +45,28 @@ namespace Mapa
         Type = PinType.SavedPin
       };
 
-      mapa.Pins.Add(cartorio);
-      mapa.Pins.Add(kitbeer);
-      mapa.Pins.Add(oficina);
+      var gps = new GPS();
+      if (gps.IsLocationAvailable())
+      {
+        Plugin.Geolocator.Abstractions.Position pos;
+        pos = gps.GetCurrentLocation().GetAwaiter().GetResult();
 
-      ContainerMapa.Children.Add(mapa);
+        if (pos.Latitude != null && pos.Longitude != null)
+        {
+          var mypos = new Pin
+          {
+            Position = new Position(pos.Latitude, pos.Longitude),
+            Label = "Estou aqui"
+          };
+          mapa.Pins.Add(mypos);
+        }
+        mapa.Pins.Add(cartorio);
+        mapa.Pins.Add(kitbeer);
+        mapa.Pins.Add(oficina);
 
+        ContainerMapa.Children.Add(mapa);
+
+      }
     }
   }
 }
